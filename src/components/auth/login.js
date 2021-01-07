@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 export default class Login extends Component {
-    constructor() {
+    constructor(props) {
         super();
 
         this.state = {
@@ -34,16 +34,18 @@ export default class Login extends Component {
         { withCredentials: true }
         ).then(response => {
             if (response.data.status === 'created') {
-                console.log('you can come in');
+                this.props.handleSuccessfullAuth();
             } else {
                 this.setState({
                     errorText: 'Wrong email or password'
-                })
+                });
+                this.handleUnSuccessfullAuth();
             }
         }).catch(error => {
             this.setState({
                 errorText: "An Error occured..."
-            })
+            });
+            this.handleUnSuccessfullAuth();
         })
         event.preventDefault();
     }
