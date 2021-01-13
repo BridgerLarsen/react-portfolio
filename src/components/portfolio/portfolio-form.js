@@ -25,6 +25,8 @@ export default class PortfolioForm extends Component {
         this.componentConfig = this.componentConfig.bind(this);
         this.djsConfig = this.djsConfig.bind(this);
         this.handleThumbDrop = this.handleThumbDrop.bind(this);
+        this.handleBannerDrop = this.handleBannerDrop.bind(this);
+        this.handleLogoDrop = this.handleLogoDrop.bind(this);
     }
 
     componentConfig() {  // componentConfig and djsConfig are all from the react-dropzone-component documentation.
@@ -48,6 +50,18 @@ export default class PortfolioForm extends Component {
         };
     }
 
+    handleBannerDrop() {
+        return {
+            addedfile: file => this.setState({ banner_image: file })
+        };
+    }
+
+    handleLogoDrop() {
+        return {
+            addedfile: file => this.setState({ logo: file })
+        };
+    }
+
     buildForm() {
         let formData = new FormData();  // formData object
 
@@ -59,6 +73,14 @@ export default class PortfolioForm extends Component {
         
         if (this.state.thumb_image) {
             formData.append("portfolio_item[thumb_image]", this.state.thumb_image);
+        }
+
+        if (this.state.banner_image) {
+            formData.append("portfolio_item[banner_image]", this.state.banner_image);
+        }
+
+        if (this.state.logo) {
+            formData.append("portfolio_item[logo]", this.state.logo);
         }
 
         return formData;
@@ -145,6 +167,18 @@ export default class PortfolioForm extends Component {
                             config={this.componentConfig()}
                             djsConfig={this.djsConfig()}
                             eventHandlers={this.handleThumbDrop()}
+                        />
+
+                        <DropzoneComponent 
+                            config={this.componentConfig()}
+                            djsCondfig={this.djsConfig()}
+                            eventHandlers={this.handleBannerDrop()}
+                        />
+
+                        <DropzoneComponent 
+                            config={this.componentConfig()}
+                            djsCondfig={this.djsConfig()}
+                            eventHandlers={this.handleLogoDrop()}
                         />
                     </div>
 
