@@ -3,12 +3,10 @@
     grid-template-columns: 3fr 1fr;
 
     .left-column {
-        background-color: $charcoal;
-        color: $teal;
+        background-color: $offwhite;
     }
 
     .right-column {
-        background-color: $warning;
-        color: $blue;
+        background-color: $charcoal;
     }
 }
