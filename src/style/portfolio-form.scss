@@ -1,11 +1,22 @@
 .portfolio-form-wrapper {
-    display: grid;
+    @include base-grid();
     grid-template-columns: 1fr;
     padding: 42px;
-    grid-gap: 21px;
 
     @include input-element();
     input {
         margin-bottom: 0px;
+    } 
+    
+    .btn-wrapper {
+        display: flex;
+        justify-content: center;
     }
 }
+
+.image-uploaders {
+    @include base-grid();
+    grid-template-columns: 250px 250px 250px;
+    justify-content: center;
+}
+
