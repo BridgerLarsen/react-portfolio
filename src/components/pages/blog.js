@@ -62,7 +62,6 @@ class Blog extends Component {
             withCredentials: true
         })
         .then(response => {
-            console.log(response)
             this.setState({
                 blogItems: this.state.blogItems.concat(response.data.portfolio_blogs),
                 totalCount: response.data.meta.total_records,
