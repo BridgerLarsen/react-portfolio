@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DropzoneComponent from 'react-dropzone-component'; 
 
+import '../../../node_modules/react-dropzone-component/styles/filepicker.css';
+import '../../../node_modules/dropzone/dist/min/dropzone.min.css';
+
 import RichTextEditor from '../forms/rich-text-editor';
 
 export default class BlogForm extends Component {
@@ -27,9 +30,9 @@ export default class BlogForm extends Component {
 
     componentConfig() {
         return {
-            icocFileTypes: ['.jpg', 'png'],
+            iconFiletypes: ['.jpg', '.png'],
             showFiletypeIcon: true,
-            postUrl: 'https://httpbin.org/post'
+            postUrl: "https://httpbin.org/post"
         };
     };
 
@@ -122,14 +125,16 @@ export default class BlogForm extends Component {
                     <RichTextEditor handleRichTextEditorChange={this.handleRichTextEditorChange} /> 
                 </div>
 
-                <DropzoneComponent
-                    ref={this.featuredImageRef}
-                    config={this.componentConfig()}
-                    djsConfig={this.djsConfig()}
-                    eventHandlers={this.handle_featured_image_drop()}
-                >
-                    <div className="dz-message">Featured Image</div>
-                </DropzoneComponent>
+                <div className="image-uploader">
+                    <DropzoneComponent
+                        ref={this.featuredImageRef}
+                        config={this.componentConfig()}
+                        djsConfig={this.djsConfig()}
+                        eventHandlers={this.handle_featured_image_drop()}
+                    >
+                        <div className="dz-message">Featured Image</div>
+                    </DropzoneComponent>
+                </div>
 
                 <button type="submit" className="btn">Save</button>
             </form>
