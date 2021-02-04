@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactHtmlParser from 'react-html-parser';
 
+import BlogForm from '../blog/blog-form';
 import BlogDetailFeaturedImage from '../blog/blog-detail-featured-img';
 
 export default class BLogDetail extends Component {
@@ -10,8 +11,11 @@ export default class BLogDetail extends Component {
 
         this.state = {
             currentId: this.props.match.params.slug,
-            blogItem: {}
+            blogItem: {},
+            editMode: false
         };
+
+        this.handleEditClick = this.handleEditClick.bind(this);
     }
 
     getBlogItem() {
@@ -33,6 +37,12 @@ export default class BLogDetail extends Component {
         this.getBlogItem();
     }
 
+    handleEditClick() {
+        this.setState({
+            editMode: true
+        })
+    }
+
     render() {
         const {
             title,
@@ -41,15 +51,25 @@ export default class BLogDetail extends Component {
             blog_status
         } = this.state.blogItem;
 
+        const blogDetailManager = () => {
+            if (this.state.editMode) {
+                return <BlogForm />;
+            } else {
+                return (
+                    <div className="content-container">    
+                        <h1 onClick={this.handleEditClick}>{title}</h1>
+    
+                        <BlogDetailFeaturedImage img={featured_image_url}/>
+                       
+                        <div className="content">{ReactHtmlParser(content)}</div>
+                    </div>
+                )
+            }
+        }
+
         return (
             <div className="blog-container">
-                <div className="content-container">    
-                    <h1>{title}</h1>
-
-                    <BlogDetailFeaturedImage img={featured_image_url}/>
-                   
-                    <div className="content">{ReactHtmlParser(content)}</div>
-                </div>
+                {blogDetailManager()}
             </div>
         )
     }
