@@ -53,7 +53,12 @@ export default class BLogDetail extends Component {
 
         const blogDetailManager = () => {
             if (this.state.editMode) {
-                return <BlogForm />;
+                return (
+                    <BlogForm 
+                        editMode={this.state.editMode}
+                        blogPost={this.state.blogItem}
+                    />
+                )
             } else {
                 return (
                     <div className="content-container">    

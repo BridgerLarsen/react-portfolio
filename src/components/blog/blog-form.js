@@ -12,6 +12,7 @@ export default class BlogForm extends Component {
         super();
 
         this.state = {
+            id: "",
             title: "",
             blog_status: "",
             content: "",
@@ -27,6 +28,16 @@ export default class BlogForm extends Component {
 
         this.featuredImageRef = React.createRef();
     };
+
+    componentWillMount() {
+        if (this.props.editMode) {
+            this.setState({
+                id: this.props.blogPost.id,
+                title: this.props.blogPost.title,
+                blog_status: this.props.blogPost.blog_status
+            })
+        }
+    }
 
     componentConfig() {
         return {
