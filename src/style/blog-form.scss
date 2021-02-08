@@ -13,5 +13,7 @@
         grid-template-columns: 250px;
         grid-template-rows: 150px;
         justify-content: center;
+
+        @include image-edit();
     }
 }    
