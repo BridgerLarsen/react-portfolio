@@ -25,9 +25,23 @@ export default class BlogForm extends Component {
         this.componentConfig = this.componentConfig.bind(this);
         this.djsConfig = this.djsConfig.bind(this);
         this.handle_featured_image_drop = this.handle_featured_image_drop.bind(this);
+        this.deleteImage = this.deleteImage.bind(this);
 
         this.featuredImageRef = React.createRef();
     };
+
+    deleteImage(imageType) {
+        axios.delete(
+            `https://api.devcamp.space/portfolio/delete-portfolio-blog-image/${this.props.blogPost.id}?image_type=${imageType}`,
+            { withCredentials: true }
+        )
+        .then(response => {
+            this.props.handleFeatureImageDelete();
+        })
+        .catch(error => {
+            console.log("deleteImageError", error);
+        })
+    }
 
     componentWillMount() {
         if (this.props.editMode) {
@@ -150,7 +164,9 @@ export default class BlogForm extends Component {
                             <img src={this.props.blogPost.featured_image_url} />
 
                             <div className="image-removal-link">
-                                <a>remove link</a>
+                                <a onClick={() => this.deleteImage("featured_image")}>
+                                    Remove
+                                </a>
                             </div>
                         </div>
                     ) : (
