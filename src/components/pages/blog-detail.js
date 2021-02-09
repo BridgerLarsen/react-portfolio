@@ -17,6 +17,14 @@ export default class BLogDetail extends Component {
 
         this.handleEditClick = this.handleEditClick.bind(this);
         this.handleFeatureImageDelete = this.handleFeatureImageDelete.bind(this);
+        this.handleUpdateFormsubmission = this.handleUpdateFormsubmission.bind(this);
+    }
+
+    handleUpdateFormsubmission(blog) {
+        this.setState({
+            blogItem: blog,
+            editMode: false
+        })
     }
 
     handleFeatureImageDelete() {
@@ -65,6 +73,7 @@ export default class BLogDetail extends Component {
                 return (
                     <BlogForm 
                         handleFeatureImageDelete={this.handleFeatureImageDelete}
+                        handleUpdateFormsubmission={this.handleUpdateFormsubmission}
                         editMode={this.state.editMode}
                         blogPost={this.state.blogItem}
                     />
