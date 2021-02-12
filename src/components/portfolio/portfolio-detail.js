@@ -39,10 +39,36 @@ export default class PortfolioDetail extends Component {
             url
         } = this.state.portfolioItem;
 
+        const bannerImageStyles = {
+            backgroundImage: "url(" + thumb_image_url +")",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center"     
+        }
+
         return (
             <div>
-                <h2>{name}</h2>
-                <p>{description}</p>
+                <div className="portfolio-detail-wrapper">
+                    <div className="banner-image" style={bannerImageStyles}>
+                        <img src={logo_url} />
+                    </div>
+
+                    <div className="portfolio-detail-content-wrapper">
+                        <div className="title">
+                            {name}
+                        </div>
+
+                        <div className="description">
+                            {description}
+                        </div>
+
+                        <div className="site-link-wrapper">
+                                <a href={url} className="site-link" target="_blank">
+                                    Visit {name}
+                                </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
