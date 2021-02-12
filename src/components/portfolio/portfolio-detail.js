@@ -4,13 +4,19 @@ import axios from 'axios';
 export default class PortfolioDetail extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            portfolioItem: {}
+        }
     }
 
     getPortfolioItem() {
         axios
             .get(`https://bridgerlarsen.devcamp.space/portfolio/portfolio_items/${this.props.match.params.slug}`)
             .then(response => {
-                console.log("portfolio item", response); 
+                this.setState({
+                    portfolioItem: response.data.portfolio_item
+                })
             })
             .catch(error => {
                 console.log("getPorfolioItem error", error);
@@ -22,9 +28,21 @@ export default class PortfolioDetail extends Component {
     }
 
     render() {
+        const {
+            banner_image_url,
+            category,
+            description,
+            id,
+            logo_url,
+            name,
+            thumb_image_url,
+            url
+        } = this.state.portfolioItem;
+
         return (
             <div>
-                <h2>Portfolio Detail for {this.props.match.params.slug}</h2>
+                <h2>{name}</h2>
+                <p>{description}</p>
             </div>
         )
     }
