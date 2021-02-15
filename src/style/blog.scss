@@ -4,6 +4,16 @@
     align-items: center;
     position: relative;
 
+    .admin-blog-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+            cursor: pointer;
+        }
+    }
+
     .new-blog-link-button {
         position: fixed;
         right: 0;
