@@ -12,5 +12,25 @@
         justify-content: center;
         align-items: center;
         background-color: $offwhite;
+
+        .login-error-text {
+            color: $warning;
+        }
+
+        .auth-form-wrapper {
+            @include input-element();
+            @include base-grid();
+            padding: 21px;
+
+            .form-group {
+                display: flex;
+
+                svg {
+                    font-size: 2em;
+                    color: $teal;
+                    margin-right: 15px;
+                }
+            }
+        }
     }
 }
